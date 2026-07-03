@@ -1,3 +1,7 @@
+<!-- Language: **English** | [简体中文](./README.zh-CN.md) -->
+
+**English** | [简体中文](./README.zh-CN.md)
+
 # 🩺 Skill Doctor
 
 > A meta-skill for Claude Code that gives your **other skills** a health checkup — and tells you exactly what to trim.
@@ -5,12 +9,10 @@
 > [!NOTE]
 > **Inspired by Matt Pocock.** Skill Doctor is built entirely on the method Matt Pocock shared in his talk ***Building Great Agent Skills: The Missing Manual*** (AI Engineer). All credit for the underlying approach — *who-triggers → structure → deletion test*, leading words, and the deletion test itself — goes to him. Skill Doctor just packages that method into a runnable skill.
 > 📺 **Watch the original talk:** https://www.youtube.com/watch?v=UNzCG3lw6O0
->
-> **本工具受 Matt Pocock 启发**，完全基于他在演讲《Building Great Agent Skills: The Missing Manual》中分享的方法论构建。核心思路（谁触发→结构→删减、leading words、deletion test）皆源自他的分享，Skill Doctor 只是把这套方法固化成一个可运行的 Skill。
 
 Skill Doctor reviews any Claude Code Skill using the method from Matt Pocock's talk [*Building Great Agent Skills: The Missing Manual*](https://www.youtube.com/watch?v=UNzCG3lw6O0). It **diagnoses only** — it never edits your files unless you explicitly ask it to.
 
-如果你的 `SKILL.md` 越写越长、规则越加越多、Agent 却越来越不听话 —— 你大概率掉进了 Pocock 说的 **"Skill Hell"**。Skill Doctor 帮你把一份臃肿的 Skill 变回**可执行的入口**。
+If your `SKILL.md` keeps getting longer, you keep adding rules, and yet the agent listens *less* — you've probably fallen into what Pocock calls **"Skill Hell."** Skill Doctor turns a bloated skill back into an **executable entry point**.
 
 ---
 
@@ -18,8 +20,7 @@ Skill Doctor reviews any Claude Code Skill using the method from Matt Pocock's t
 
 Developers keep adding rules when a skill misbehaves. A few rounds later, `SKILL.md` becomes a junk drawer nobody dares to delete from. The fix isn't *more* rules — it's a review:
 
-> **谁触发 → 结构 → 删减**
-> *Who triggers it → Structure → Deletion test*
+> **Who triggers it → Structure → Deletion test**
 
 Skill Doctor runs exactly that review and hands you a prioritized report.
 
@@ -36,9 +37,9 @@ cp -r skill-doctor ~/.claude/skills/
 
 Then just tell Claude Code:
 
-- **"哪些 skill 该体检？"** / *"which skills need a checkup?"* → runs onboarding scan
-- **"体检 my-skill"** / *"review my-skill"* → full checkup report
-- **"改造 my-skill"** / *"refactor my-skill"* → applies fixes (only after you approve)
+- ***"which skills need a checkup?"*** → runs the onboarding scan
+- ***"review my-skill"*** → full checkup report
+- ***"refactor my-skill"*** → applies fixes (only after you approve)
 
 ---
 
@@ -74,11 +75,11 @@ bash ~/.claude/skills/skill-doctor/scripts/scan-skills.sh
 ```
 
 ```
-SKILL                          行数   拆分  近改(天)   体检优先级
+SKILL                          lines  split  edited(d)  priority
 ------------------------------------------------------------------
-some-big-skill                  662    有       16     🔴 强烈建议
-another-skill                   485    有       53     🔴 强烈建议
-tidy-little-skill                56    无      109     🟢 健康
+some-big-skill                  662    yes      16      🔴 strongly advised
+another-skill                   485    yes      53      🔴 strongly advised
+tidy-little-skill                56    no      109      🟢 healthy
 ```
 
 It ranks by main-file length, whether reference files have been split out, and recent edits. (The filesystem can't see *real* usage frequency, so it asks you to confirm which ones you actually use most before recommending a checkup.)
